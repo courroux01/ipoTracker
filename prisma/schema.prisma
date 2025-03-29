@@ -1,15 +1,91 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// schema.prisma
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+datasource db {
+  provider = "postgresql" // or "mysql", "sqlite", etc.
+  url      = env("DATABASE_URL")
+}
 
 generator client {
   provider = "prisma-client-js"
-  output = "../generated/prisma"
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+enum IpoStatus {
+  upcoming
+  live
+  completed
+  delayed
+}
+
+enum InvestmentStatus {
+  pending
+  completed
+  sold
+}
+
+model User {
+  user_id       Int                @id @default(autoincrement())
+  username      String             @unique
+  email         String             @unique
+  password_hash String
+  first_name    String?
+  last_name     String?
+  created_at    DateTime           @default(now())
+  
+  // Relationships
+  watchlists    OngoingWatchlist[]
+  investments   PastInvestment[]
+  
+  @@index([username])
+  @@index([email])
+}
+
+model IPO {
+  ipo_id         Int                @id @default(autoincrement())
+  name           String
+  symbol         String             // add @unique if symbol must be unique
+  company_name   String?
+  offering_price Decimal?           // requires setting up the Decimal type in Prisma
+  total_shares   Int?
+  ipo_date       DateTime?          // Date is stored as DateTime
+  status         IpoStatus          @default(upcoming)
+  description    String?
+  created_at     DateTime           @default(now())
+  updated_at     DateTime           @default(now())
+
+  // Relationships
+  watchlists     OngoingWatchlist[]
+  investments    PastInvestment[]
+  
+  @@index([symbol])
+}
+
+model OngoingWatchlist {
+  watchlist_id Int      @id @default(autoincrement())
+  user_id      Int
+  ipo_id       Int
+  expiry_date  DateTime
+
+  // Relationships
+  user         User     @relation(fields: [user_id], references: [user_id])
+  ipo          IPO      @relation(fields: [ipo_id], references: [ipo_id])
+  
+  @@index([user_id])
+  @@index([ipo_id])
+}
+
+model PastInvestment {
+  investment_id   Int              @id @default(autoincrement())
+  user_id         Int
+  ipo_id          Int
+  shares_purchased Int
+  purchase_price  Decimal          // Purchase price as a Decimal
+  sold_date       DateTime         @default(now())
+  status          InvestmentStatus @default(pending)
+
+  // Relationships
+  user            User             @relation(fields: [user_id], references: [user_id])
+  ipo             IPO              @relation(fields: [ipo_id], references: [ipo_id])
+  
+  @@index([user_id])
+  @@index([ipo_id])
 }
