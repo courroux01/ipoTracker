@@ -43,38 +43,32 @@ export function IPODetailsModal({
           <div className="flex-1">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                  {ipo.name}
-                </h3>
+                <h3 className="text-xl font-bold text-white">{ipo.name}</h3>
                 <div className="mt-1 flex items-center gap-2">
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <span className="text-sm font-medium text-gray-300">
                     {ipo.ticker}
                   </span>
-                  <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                  <span className="rounded-full bg-gray-800 px-2 py-0.5 text-xs font-medium text-gray-300">
                     {ipo.sector}
                   </span>
                 </div>
               </div>
               <InterestCheckbox ipo={ipo} size="lg" />
             </div>
-            <p className="mt-2 text-gray-600 dark:text-gray-400">
-              {ipo.description}
-            </p>
+            <p className="mt-2 text-gray-400">{ipo.description}</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="rounded-lg bg-gray-50 p-4 dark:bg-gray-800/50">
-            <h4 className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
+          <div className="rounded-lg bg-gray-800/50 p-4">
+            <h4 className="mb-3 text-sm font-medium text-gray-300">
               IPO Details
             </h4>
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4 text-[#c9ff3c]" />
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Expected Date:
-                </span>
-                <span className="text-sm font-medium text-gray-900 dark:text-white">
+                <span className="text-sm text-gray-400">Expected Date:</span>
+                <span className="text-sm font-medium text-white">
                   {new Date(ipo.expectedDate).toLocaleDateString('en-US', {
                     month: 'long',
                     day: 'numeric',
@@ -84,53 +78,43 @@ export function IPODetailsModal({
               </div>
               <div className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-[#c9ff3c]" />
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Price Range:
-                </span>
-                <span className="text-sm font-medium text-gray-900 dark:text-white">
+                <span className="text-sm text-gray-400">Price Range:</span>
+                <span className="text-sm font-medium text-white">
                   {ipo.expectedPrice}
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <TrendingUp className="h-4 w-4 text-[#c9ff3c]" />
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Valuation:
-                </span>
-                <span className="text-sm font-medium text-gray-900 dark:text-white">
+                <span className="text-sm text-gray-400">Valuation:</span>
+                <span className="text-sm font-medium text-white">
                   {ipo.valuation}
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="rounded-lg bg-gray-50 p-4 dark:bg-gray-800/50">
-            <h4 className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
+          <div className="rounded-lg bg-gray-800/50 p-4">
+            <h4 className="mb-3 text-sm font-medium text-gray-300">
               Company Information
             </h4>
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <Building className="h-4 w-4 text-[#c9ff3c]" />
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Founded:
-                </span>
-                <span className="text-sm font-medium text-gray-900 dark:text-white">
+                <span className="text-sm text-gray-400">Founded:</span>
+                <span className="text-sm font-medium text-white">
                   {ipo.foundedYear}
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4 text-[#c9ff3c]" />
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Employees:
-                </span>
-                <span className="text-sm font-medium text-gray-900 dark:text-white">
+                <span className="text-sm text-gray-400">Employees:</span>
+                <span className="text-sm font-medium text-white">
                   {ipo.employees?.toLocaleString()}
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Globe className="h-4 w-4 text-[#c9ff3c]" />
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Website:
-                </span>
+                <span className="text-sm text-gray-400">Website:</span>
                 <a
                   href={`https://${ipo.website}`}
                   target="_blank"
@@ -145,14 +129,14 @@ export function IPODetailsModal({
         </div>
 
         <div>
-          <h4 className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
+          <h4 className="mb-3 text-sm font-medium text-gray-300">
             Key Competitors
           </h4>
           <div className="flex flex-wrap gap-2">
             {ipo.competitors?.map((competitor) => (
               <span
                 key={competitor}
-                className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                className="rounded-full bg-gray-800 px-3 py-1 text-xs font-medium text-gray-300"
               >
                 {competitor}
               </span>
@@ -161,29 +145,24 @@ export function IPODetailsModal({
         </div>
 
         <div>
-          <h4 className="mb-3 flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+          <h4 className="mb-3 flex items-center gap-2 text-sm font-medium text-gray-300">
             <AlertTriangle className="h-4 w-4 text-amber-500" />
             Risk Factors
           </h4>
           <ul className="list-disc space-y-1 pl-5">
             {ipo.riskFactors?.map((risk) => (
-              <li
-                key={risk}
-                className="text-sm text-gray-600 dark:text-gray-400"
-              >
+              <li key={risk} className="text-sm text-gray-400">
                 {risk}
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="border-t border-gray-200 pt-4 dark:border-gray-800">
-          <h4 className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+        <div className="border-t border-gray-800 pt-4">
+          <h4 className="mb-2 text-sm font-medium text-gray-300">
             Use of Proceeds
           </h4>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            {ipo.useOfProceeds}
-          </p>
+          <p className="text-sm text-gray-400">{ipo.useOfProceeds}</p>
         </div>
 
         <div className="flex justify-end">

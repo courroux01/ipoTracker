@@ -49,7 +49,7 @@ export default function HistoryPage() {
       description="View your investment history and portfolio performance"
       actionButton={
         <AnimatedButton
-          variant="secondary"
+          variant="primary"
           icon={<Download className="h-4 w-4" />}
           iconPosition="left"
         >

@@ -1,3 +1,4 @@
+'use client';
 // components/UserProvider.tsx
 import { createContext, useContext, ReactNode } from 'react';
 import { useUser } from '@clerk/nextjs';

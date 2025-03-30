@@ -54,7 +54,7 @@ export function InvestmentForm({ ipo, onComplete }: InvestmentFormProps) {
             className={`rounded-md px-3 py-1 text-sm ${
               investmentType === 'shares'
                 ? 'bg-[#c9ff3c] text-black'
-                : 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
+                : 'bg-gray-800 text-gray-300'
             }`}
             onClick={() => setInvestmentType('shares')}
           >
@@ -65,7 +65,7 @@ export function InvestmentForm({ ipo, onComplete }: InvestmentFormProps) {
             className={`rounded-md px-3 py-1 text-sm ${
               investmentType === 'amount'
                 ? 'bg-[#c9ff3c] text-black'
-                : 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
+                : 'bg-gray-800 text-gray-300'
             }`}
             onClick={() => setInvestmentType('amount')}
           >
@@ -79,7 +79,7 @@ export function InvestmentForm({ ipo, onComplete }: InvestmentFormProps) {
             <input
               type="number"
               placeholder="Number of shares"
-              className="w-full rounded-md border border-gray-300 bg-white py-2 pr-4 pl-10 text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+              className="w-full rounded-md border border-gray-700 bg-gray-800 py-2 pr-4 pl-10 text-white"
               value={shares}
               onChange={(e) => setShares(e.target.value)}
               min="0"
@@ -92,7 +92,7 @@ export function InvestmentForm({ ipo, onComplete }: InvestmentFormProps) {
             <input
               type="number"
               placeholder="Investment amount"
-              className="w-full rounded-md border border-gray-300 bg-white py-2 pr-4 pl-10 text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+              className="w-full rounded-md border border-gray-700 bg-gray-800 py-2 pr-4 pl-10 text-white"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               min="0"

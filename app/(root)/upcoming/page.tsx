@@ -238,7 +238,7 @@ export default function UpcomingPage() {
         </div>
 
         {selectedPeriod === 'Custom' && (
-          <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="mt-4 text-sm text-gray-400">
             Selected date:{' '}
             <span className="font-medium text-[#c9ff3c]">
               {format(selectedDate, 'MMMM d, yyyy')}
@@ -257,7 +257,7 @@ export default function UpcomingPage() {
               <input
                 type="text"
                 placeholder="Search IPOs..."
-                className="w-full rounded-xl bg-white py-2 pr-4 pl-10 text-gray-900 shadow-sm focus:ring-2 focus:ring-[#c9ff3c]/50 focus:outline-none dark:bg-[#1a1a1a] dark:text-white"
+                className="w-full rounded-xl bg-[#1a1a1a] py-2 pr-4 pl-10 text-white shadow-sm focus:ring-2 focus:ring-[#c9ff3c]/50 focus:outline-none"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 // Add these props for better UX
@@ -266,7 +266,7 @@ export default function UpcomingPage() {
               />
               {searchQuery && (
                 <motion.button
-                  className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 transform text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                  className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 transform text-gray-500 hover:text-gray-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setSearchQuery('')}
@@ -276,11 +276,11 @@ export default function UpcomingPage() {
               )}
             </div>
             <motion.button
-              className="hidden rounded-xl bg-white p-2 shadow-sm sm:flex dark:bg-[#1a1a1a]"
+              className="hidden rounded-xl bg-[#1a1a1a] p-2 shadow-sm sm:flex"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Filter className="h-4 w-4 text-gray-700 dark:text-gray-300" />
+              <Filter className="h-4 w-4 text-gray-300" />
             </motion.button>
           </div>
         }
@@ -297,29 +297,29 @@ export default function UpcomingPage() {
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div
                 key={i}
-                className="animate-pulse rounded-xl bg-white p-4 shadow-sm dark:bg-[#1a1a1a]"
+                className="animate-pulse rounded-xl bg-[#1a1a1a] p-4 shadow-sm"
               >
                 <div className="mb-3 flex items-start justify-between">
                   <div className="flex items-center">
-                    <div className="h-10 w-10 rounded-lg bg-gray-200 dark:bg-gray-700"></div>
+                    <div className="h-10 w-10 rounded-lg bg-gray-700"></div>
                     <div className="ml-3">
-                      <div className="h-4 w-32 rounded bg-gray-200 dark:bg-gray-700"></div>
-                      <div className="mt-2 h-3 w-20 rounded bg-gray-200 dark:bg-gray-700"></div>
+                      <div className="h-4 w-32 rounded bg-gray-700"></div>
+                      <div className="mt-2 h-3 w-20 rounded bg-gray-700"></div>
                     </div>
                   </div>
                 </div>
-                <div className="mb-3 h-4 w-full rounded bg-gray-200 dark:bg-gray-700"></div>
-                <div className="mb-3 h-4 w-3/4 rounded bg-gray-200 dark:bg-gray-700"></div>
+                <div className="mb-3 h-4 w-full rounded bg-gray-700"></div>
+                <div className="mb-3 h-4 w-3/4 rounded bg-gray-700"></div>
                 <div className="flex justify-between">
-                  <div className="h-3 w-20 rounded bg-gray-200 dark:bg-gray-700"></div>
-                  <div className="h-3 w-20 rounded bg-gray-200 dark:bg-gray-700"></div>
+                  <div className="h-3 w-20 rounded bg-gray-700"></div>
+                  <div className="h-3 w-20 rounded bg-gray-700"></div>
                 </div>
               </div>
             ))}
           </div>
         ) : filteredIpos.length === 0 ? (
           <div className="py-12 text-center">
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-gray-400">
               No IPOs found matching your criteria
             </p>
             <motion.button
@@ -347,7 +347,7 @@ export default function UpcomingPage() {
 
         {/* Filter summary */}
         {filteredIpos.length > 0 && (
-          <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="mt-4 text-sm text-gray-400">
             <div className="mb-2 flex flex-wrap items-center gap-2">
               <span>Showing {filteredIpos.length} IPOs</span>
 
@@ -367,19 +367,19 @@ export default function UpcomingPage() {
 
             <div className="flex flex-wrap items-center gap-2">
               {selectedSector !== 'All' && (
-                <span className="rounded-full bg-gray-100 px-2 py-1 text-xs dark:bg-gray-800">
+                <span className="rounded-full bg-gray-800 px-2 py-1 text-xs">
                   Sector: {selectedSector}
                 </span>
               )}
               {selectedPeriod !== 'All' && (
-                <span className="rounded-full bg-gray-100 px-2 py-1 text-xs dark:bg-gray-800">
+                <span className="rounded-full bg-gray-800 px-2 py-1 text-xs">
                   Period: {selectedPeriod}
                   {selectedPeriod === 'Custom' &&
                     ` (${format(selectedDate, 'MMM d, yyyy')})`}
                 </span>
               )}
               {searchQuery && (
-                <span className="rounded-full bg-gray-100 px-2 py-1 text-xs dark:bg-gray-800">
+                <span className="rounded-full bg-gray-800 px-2 py-1 text-xs">
                   Search: "{searchQuery}"
                 </span>
               )}

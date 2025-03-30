@@ -57,20 +57,6 @@ const itemVariants = {
   },
 };
 
-const logoVariants = {
-  hidden: { opacity: 0, scale: 0.8, rotate: -10 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    rotate: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 200,
-      damping: 20,
-    },
-  },
-};
-
 export function AnimatedNavbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
@@ -87,7 +73,7 @@ export function AnimatedNavbar() {
             <Link href="/">
               <div className="flex items-center">
                 <TrendingUp className="h-8 w-8 text-[#c9ff3c]" />
-                <span className="ml-2 text-lg font-semibold">WealthPulse</span>
+                <span className="ml-2 text-lg font-semibold">SeekIPO</span>
               </div>
             </Link>
 

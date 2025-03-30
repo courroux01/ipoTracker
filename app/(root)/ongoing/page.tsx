@@ -69,14 +69,12 @@ export default function OngoingPage() {
       <SectionContainer title="This Month's Balance">
         <div className="mb-6 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Total Portfolio Value
-            </p>
+            <p className="text-sm text-gray-400">Total Portfolio Value</p>
             <div className="mt-1 flex items-center gap-3">
-              <p className="text-2xl font-bold text-gray-900 md:text-3xl dark:text-white">
+              <p className="text-2xl font-bold text-white md:text-3xl">
                 {formatCurrency(totalInvestment)}
               </p>
-              <div className="flex items-center rounded-full bg-green-100 px-2 py-1 text-green-500 dark:bg-green-900/30">
+              <div className="flex items-center rounded-full bg-green-900/30 px-2 py-1 text-green-500">
                 <ArrowUpRight className="mr-1 h-4 w-4" />
                 <span className="font-medium">
                   {formatPercentage(monthlyChange)}
@@ -96,10 +94,8 @@ export default function OngoingPage() {
         title="Past Investments"
         rightElement={
           <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-            <span className="text-sm text-gray-600 dark:text-gray-400">
-              IPOs before today
-            </span>
+            <Calendar className="h-4 w-4 text-gray-400" />
+            <span className="text-sm text-gray-400">IPOs before today</span>
           </div>
         }
       >
@@ -108,13 +104,13 @@ export default function OngoingPage() {
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="animate-pulse rounded-xl bg-white p-4 shadow-sm dark:bg-[#1a1a1a]"
+                className="animate-pulse rounded-xl bg-[#1a1a1a] p-4 shadow-sm"
               >
                 <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-lg bg-gray-200 dark:bg-gray-700"></div>
+                  <div className="h-10 w-10 rounded-lg bg-gray-700"></div>
                   <div className="flex-1">
-                    <div className="mb-2 h-4 w-32 rounded bg-gray-200 dark:bg-gray-700"></div>
-                    <div className="h-3 w-24 rounded bg-gray-200 dark:bg-gray-700"></div>
+                    <div className="mb-2 h-4 w-32 rounded bg-gray-700"></div>
+                    <div className="h-3 w-24 rounded bg-gray-700"></div>
                   </div>
                 </div>
               </div>
@@ -122,10 +118,8 @@ export default function OngoingPage() {
           </div>
         ) : pastIPOs.length === 0 ? (
           <div className="py-8 text-center">
-            <p className="text-gray-500 dark:text-gray-400">
-              No past investments found
-            </p>
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-gray-400">No past investments found</p>
+            <p className="mt-2 text-sm text-gray-400">
               Mark IPOs as interested on the Upcoming page to track them here
             </p>
           </div>
@@ -143,10 +137,8 @@ export default function OngoingPage() {
         title="Upcoming Investments"
         rightElement={
           <div className="flex items-center gap-2">
-            <Clock className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-            <span className="text-sm text-gray-600 dark:text-gray-400">
-              IPOs after today
-            </span>
+            <Clock className="h-4 w-4 text-gray-400" />
+            <span className="text-sm text-gray-400">IPOs after today</span>
           </div>
         }
       >
@@ -155,13 +147,13 @@ export default function OngoingPage() {
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="animate-pulse rounded-xl bg-white p-4 shadow-sm dark:bg-[#1a1a1a]"
+                className="animate-pulse rounded-xl bg-[#1a1a1a] p-4 shadow-sm"
               >
                 <div className="flex items-center gap-4">
-                  <div className="h-10 w-10 rounded-lg bg-gray-200 dark:bg-gray-700"></div>
+                  <div className="h-10 w-10 rounded-lg bg-gray-700"></div>
                   <div className="flex-1">
-                    <div className="mb-2 h-4 w-32 rounded bg-gray-200 dark:bg-gray-700"></div>
-                    <div className="h-3 w-24 rounded bg-gray-200 dark:bg-gray-700"></div>
+                    <div className="mb-2 h-4 w-32 rounded bg-gray-700"></div>
+                    <div className="h-3 w-24 rounded bg-gray-700"></div>
                   </div>
                 </div>
               </div>
@@ -169,10 +161,8 @@ export default function OngoingPage() {
           </div>
         ) : futureIPOs.length === 0 ? (
           <div className="py-8 text-center">
-            <p className="text-gray-500 dark:text-gray-400">
-              No upcoming investments found
-            </p>
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-gray-400">No upcoming investments found</p>
+            <p className="mt-2 text-sm text-gray-400">
               Mark IPOs as interested on the Upcoming page to track them here
             </p>
           </div>

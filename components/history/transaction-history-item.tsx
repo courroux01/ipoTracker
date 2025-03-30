@@ -44,7 +44,7 @@ export function TransactionHistoryItem({
 
   return (
     <motion.div
-      className="rounded-xl bg-[#1a1a1a] p-4 shadow-sm"
+      className="rounded-xl border-2 border-white bg-[#1a1a1a] p-4 shadow-sm"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1 + index * 0.05 }}

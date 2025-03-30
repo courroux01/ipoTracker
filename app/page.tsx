@@ -18,11 +18,11 @@ export default function Home() {
         >
           <div className="mt-8 mb-12 text-center">
             <h1 className="mb-6 text-3xl font-bold text-white md:text-5xl lg:text-6xl">
-              Welcome to <span className="text-[#c9ff3c]">WealthPulse</span>
+              Welcome to <span className="text-[#c9ff3c]">SeekIPO</span>
             </h1>
             <p className="mx-auto max-w-3xl text-lg text-gray-400 md:text-xl">
-              Your comprehensive financial dashboard for tracking investments
-              and market opportunities
+              Track the hottest private stocks turning public. View potentially
+              high reward buys and get comprehensive data analysis and history.
             </p>
           </div>
 

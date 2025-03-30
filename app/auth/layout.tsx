@@ -12,7 +12,11 @@ const AuthLayout = async ({ children }: Props) => {
     redirect('/');
   }
 
-  return <>{children}</>;
+  return (
+    <div className="flex h-screen w-screen items-center justify-center bg-[#121212]">
+      {children}
+    </div>
+  );
 };
 
 export default AuthLayout;

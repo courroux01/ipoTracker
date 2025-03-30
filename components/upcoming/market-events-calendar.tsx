@@ -115,31 +115,31 @@ export function MarketEventsCalendar({
 
   return (
     <motion.div
-      className="rounded-xl bg-white p-4 shadow-sm dark:bg-[#1a1a1a]"
+      className="rounded-xl bg-[#1a1a1a] p-4 shadow-sm"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
     >
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="font-medium text-gray-900 dark:text-white">
+        <h3 className="font-medium text-white">
           {format(currentWeek, 'MMMM yyyy')}
         </h3>
         <div className="flex items-center gap-2">
           <motion.button
-            className="rounded-full bg-gray-100 p-1 dark:bg-gray-800"
+            className="rounded-full bg-gray-800 p-1"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setCurrentWeek(subWeeks(currentWeek, 1))}
           >
-            <ChevronLeft className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+            <ChevronLeft className="h-5 w-5 text-gray-300" />
           </motion.button>
           <motion.button
-            className="rounded-full bg-gray-100 p-1 dark:bg-gray-800"
+            className="rounded-full bg-gray-800 p-1"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setCurrentWeek(addWeeks(currentWeek, 1))}
           >
-            <ChevronRight className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+            <ChevronRight className="h-5 w-5 text-gray-300" />
           </motion.button>
         </div>
       </div>
@@ -148,7 +148,7 @@ export function MarketEventsCalendar({
         {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
           <div
             key={day}
-            className="text-center text-xs font-medium text-gray-500 dark:text-gray-400"
+            className="text-center text-xs font-medium text-gray-400"
           >
             {day}
           </div>
@@ -170,8 +170,8 @@ export function MarketEventsCalendar({
                 isToday
                   ? 'border border-[#c9ff3c] bg-[#c9ff3c]/10'
                   : isSelected
-                    ? 'border border-gray-200 bg-gray-100 dark:border-gray-700 dark:bg-gray-800'
-                    : 'bg-gray-50 dark:bg-gray-900/50'
+                    ? 'border border-gray-700 bg-gray-800'
+                    : 'bg-gray-900/50'
               }`}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -179,7 +179,7 @@ export function MarketEventsCalendar({
             >
               <div className="mb-1 text-right">
                 <span
-                  className={`text-xs font-medium ${isToday ? 'text-[#c9ff3c]' : 'text-gray-700 dark:text-gray-300'}`}
+                  className={`text-xs font-medium ${isToday ? 'text-[#c9ff3c]' : 'text-gray-300'}`}
                 >
                   {format(date, 'd')}
                 </span>
@@ -189,7 +189,7 @@ export function MarketEventsCalendar({
                 {events.map((event, eventIndex) => (
                   <motion.div
                     key={eventIndex}
-                    className="rounded bg-white p-1 text-xs shadow-sm dark:bg-gray-800"
+                    className="rounded bg-gray-800 p-1 text-xs shadow-sm"
                     whileHover={{ scale: 1.05 }}
                     initial={{ opacity: 0, x: -5 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -197,7 +197,7 @@ export function MarketEventsCalendar({
                   >
                     <div className="flex items-center gap-1">
                       {getEventIcon(event.type)}
-                      <span className="truncate font-medium text-gray-900 dark:text-white">
+                      <span className="truncate font-medium text-white">
                         {event.title}
                       </span>
                     </div>
