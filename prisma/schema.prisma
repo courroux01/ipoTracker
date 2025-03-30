@@ -1,91 +1,124 @@
-// schema.prisma
-
-datasource db {
-  provider = "postgresql" // or "mysql", "sqlite", etc.
-  url      = env("DATABASE_URL")
-}
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
 }
 
-enum IpoStatus {
-  upcoming
-  live
-  completed
-  delayed
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-enum InvestmentStatus {
-  pending
-  completed
-  sold
-}
-
+// User model connected to Clerk authentication
 model User {
-  user_id       Int                @id @default(autoincrement())
-  username      String             @unique
-  email         String             @unique
-  password_hash String
-  first_name    String?
-  last_name     String?
-  created_at    DateTime           @default(now())
-  
-  // Relationships
-  watchlists    OngoingWatchlist[]
-  investments   PastInvestment[]
-  
-  @@index([username])
+  id                String              @id // Clerk user ID
+  email             String              @unique
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  profile           Profile?
+  interestedIpos    UserInterestedIpo[]
+  transactions      Transaction[]
+  notificationPrefs NotificationPrefs?
+
   @@index([email])
 }
 
-model IPO {
-  ipo_id         Int                @id @default(autoincrement())
+// User profile information
+model Profile {
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  riskTolerance    String?  // Conservative, Moderate, Aggressive
+  investmentHorizon String?  // Less than 5 years, 5-10 years, 10+ years
+  incomeBracket    String?  // Income bracket for investment recommendations
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([userId])
+}
+
+// IPO data
+model Ipo {
+  id             String              @id @default(cuid())
+  ticker         String              @unique
   name           String
-  symbol         String             // add @unique if symbol must be unique
-  company_name   String?
-  offering_price Decimal?           // requires setting up the Decimal type in Prisma
-  total_shares   Int?
-  ipo_date       DateTime?          // Date is stored as DateTime
-  status         IpoStatus          @default(upcoming)
-  description    String?
-  created_at     DateTime           @default(now())
-  updated_at     DateTime           @default(now())
+  sector         String
+  expectedDate   DateTime
+  expectedPriceMin Float
+  expectedPriceMax Float
+  description    String              @db.Text
+  logo           String?
+  valuation      Float?
+  foundedYear    Int?
+  headquarters   String?
+  ceo            String?
+  employees      Int?
+  revenue        Float?
+  website        String?
+  competitors    String[]
+  riskFactors    String[]
+  useOfProceeds  String?             @db.Text
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  interestedUsers UserInterestedIpo[]
 
-  // Relationships
-  watchlists     OngoingWatchlist[]
-  investments    PastInvestment[]
-  
-  @@index([symbol])
+  @@index([ticker])
+  @@index([sector])
+  @@index([expectedDate])
 }
 
-model OngoingWatchlist {
-  watchlist_id Int      @id @default(autoincrement())
-  user_id      Int
-  ipo_id       Int
-  expiry_date  DateTime
+// Relationship between User and IPO with additional data
+model UserInterestedIpo {
+  id             String    @id @default(cuid())
+  userId         String
+  ipoId          String
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ipo            Ipo       @relation(fields: [ipoId], references: [id], onDelete: Cascade)
+  interested     Boolean   @default(true)
+  investmentShares Int?
+  investmentAmount Float?
+  notifyOnDate   Boolean   @default(false)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 
-  // Relationships
-  user         User     @relation(fields: [user_id], references: [user_id])
-  ipo          IPO      @relation(fields: [ipo_id], references: [ipo_id])
-  
-  @@index([user_id])
-  @@index([ipo_id])
+  @@unique([userId, ipoId])
+  @@index([userId])
+  @@index([ipoId])
+  @@index([interested])
 }
 
-model PastInvestment {
-  investment_id   Int              @id @default(autoincrement())
-  user_id         Int
-  ipo_id          Int
-  shares_purchased Int
-  purchase_price  Decimal          // Purchase price as a Decimal
-  sold_date       DateTime         @default(now())
-  status          InvestmentStatus @default(pending)
+// Transaction history
+model Transaction {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ipoId       String?
+  type        String   // interest, investment, notification
+  action      String
+  details     String   @db.Text
+  amount      Float?
+  shares      Int?
+  createdAt   DateTime @default(now())
 
-  // Relationships
-  user            User             @relation(fields: [user_id], references: [user_id])
-  ipo             IPO              @relation(fields: [ipo_id], references: [ipo_id])
-  
-  @@index([user_id])
-  @@index([ipo_id])
+  @@index([userId])
+  @@index([type])
+  @@index([createdAt])
 }
+
+// User notification preferences
+model NotificationPrefs {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  emailNotifications Boolean  @default(true)
+  pushNotifications  Boolean  @default(false)
+  ipoReminders       Boolean  @default(true)
+  marketUpdates      Boolean  @default(true)
+  portfolioAlerts    Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([userId])
+}
+

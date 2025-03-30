@@ -7,9 +7,8 @@ interface ThemeProviderProps
 const ThemeProvider: FC<ThemeProviderProps> = ({ children, ...props }) => {
   return (
     <NextThemesProvider
-      {...props}
       attribute="class"
-      defaultTheme="system"
+      defaultTheme="dark"
       enableSystem
       disableTransitionOnChange
     >

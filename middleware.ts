@@ -1,6 +1,9 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-const isPublicRoute = createRouteMatcher(['/auth(.*)']);
+const isPublicRoute = createRouteMatcher([
+  '/auth(.*)',
+  '/api/auth/clerk-webhooks(.*)',
+]);
 
 export default clerkMiddleware(async (auth, req) => {
   const { userId, redirectToSignIn } = await auth();
